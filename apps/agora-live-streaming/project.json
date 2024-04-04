@@ -1,0 +1,105 @@
+{
+  "name": "agora-live-streaming",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "agora",
+  "sourceRoot": "apps/agora-live-streaming/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/agora-live-streaming",
+        "index": "apps/agora-live-streaming/src/index.html",
+        "main": "apps/agora-live-streaming/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/agora-live-streaming/tsconfig.app.json",
+        "assets": [
+          "apps/agora-live-streaming/src/favicon.ico",
+          "apps/agora-live-streaming/src/assets"
+        ],
+        "styles": ["apps/agora-live-streaming/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "port": 4000
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "agora-live-streaming:build:production"
+        },
+        "development": {
+          "browserTarget": "agora-live-streaming:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "agora-live-streaming:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/agora-live-streaming/**/*.ts",
+          "apps/agora-live-streaming/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/agora-live-streaming/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "agora-live-streaming:build",
+        "port": 4000
+      }
+    }
+  }
+}

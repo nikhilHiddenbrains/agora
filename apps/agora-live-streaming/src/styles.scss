@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/scss/bootstrap';
+
+.banner {
+  padding: 10px;
+  background-color: #2f3fb0;
+  color: white;
+}
+
+.banner-text {
+  padding: 8px 20px;
+  margin: 0;
+}
+
+.btn-live {
+  background-color: #2f3fb0;
+  color: white;
+  border: 1px solid #2f3fb0;
+}
+
+.btn-live:hover {
+  color: #2f3fb0;
+  background-color: white;
+  border: 1px solid #2f3fb0;
+}

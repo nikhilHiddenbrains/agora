@@ -1,0 +1,16 @@
+version: '3'
+services:
+    web:
+        container_name: agora
+        restart: always
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        volumes:
+            - ./app.:/app/
+        ports:
+            - ${WEBSERVER_PORT}:80
+        networks:
+            - bhn_network
+networks:
+    bhn_network:

@@ -1,0 +1,33 @@
+{
+  "name": "agora-live-streaming-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/agora-live-streaming-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/agora-live-streaming-e2e/cypress.config.ts",
+        "devServerTarget": "agora-live-streaming:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "agora-live-streaming:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "agora-live-streaming:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/agora-live-streaming-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["agora-live-streaming"]
+}
